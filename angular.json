@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "AngularBootstrap2": {
@@ -25,12 +25,33 @@
             "aot": true,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              { "glob": "**/*", "input": "node_modules/tinymce/skins", "output": "/tinymce/skins/" },
+              { "glob": "**/*", "input": "node_modules/tinymce/themes", "output": "/tinymce/themes/" },
+              { "glob": "**/*", "input": "node_modules/tinymce/plugins", "output": "/tinymce/plugins/" },
+              {
+                "glob": "**/*",
+                "input": "src/tinymce/lang",
+                "output": "/tinymce/lang/"
+              }
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/tinymce/skins/ui/oxide/skin.min.css",
+              "node_modules/tinymce/skins/ui/oxide/content.min.css",
+              "node_modules/tinymce/skins/content/default/content.min.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "node_modules/tinymce/tinymce.min.js",
+              "node_modules/tinymce/themes/silver/theme.min.js",
+              "node_modules/tinymce/plugins/link/plugin.min.js",
+              "node_modules/tinymce/plugins/paste/plugin.min.js",
+              "node_modules/tinymce/plugins/table/plugin.min.js",
+              "./src/tinymce/langs/zh_CN.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -123,6 +144,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "AngularBootstrap2"
+    }
+  },
+  "defaultProject": "AngularBootstrap2",
+  "cli": {
+    "analytics": "8b238bf4-775b-4460-85f4-81f38b7d5bdf"
+  }
 }
