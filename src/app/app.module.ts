@@ -8,7 +8,9 @@ import { HistoryComponent } from './components/history/history.component';
 import { SayComponent } from './components/say/say.component';
 import { EditorModule } from '@tinymce/tinymce-angular'; 
 import { FormsModule } from '@angular/forms';
-
+//引入HttpClientModule
+import { HttpClientModule,HttpClientJsonpModule} from '@angular/common/http';
+import { HttpserviceService } from './services/httpservice.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,9 +22,11 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     EditorModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    HttpClientJsonpModule
   ],
-  providers: [],
+  providers: [HttpserviceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
