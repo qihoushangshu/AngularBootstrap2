@@ -1,6 +1,6 @@
 import { Component, OnInit ,Injectable} from '@angular/core';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
 
+import {HttpserviceService} from '../../services/httpservice.service';
 declare var tinymce: any;
 @Component({
   selector: 'app-say',
@@ -14,8 +14,8 @@ export class SayComponent implements OnInit {
 
   public editorContent:string='';
   public title:string ='';
-  public ret:string ='';
-  constructor(public http:HttpClient) { 
+  public ret:any ='';
+  constructor(public service:HttpserviceService) { 
     
   }
 
@@ -25,19 +25,16 @@ export class SayComponent implements OnInit {
   
 
   postContent(): void {
-    console.log(tinymce.activeEditor.getContent({'format':'text'}));
-    console.log(this.title);
-    const httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json'})
-    };
-    var api = "http://127.0.0.1:8088/saveSay"; 
-    this.http.post(api,{"title":this.title,"content":tinymce.activeEditor.getContent({'format':'text'})},httpOptions).subscribe(
-      res=>{
-        this.ret = res['ret'];
-      }
-    )
-  this.callback((data)=>{
-     this.ret = data;
+    // this.sayInfo.title=this.title;
+    // this.sayInfo.content=tinymce.activeEditor.getContent({'format':'text'});
+    var api:any = "http://127.0.0.1:8088/saveSay"; 
+    var param:any= {"title":this.title,"content":tinymce.activeEditor.getContent({'format':'text'})}
+    this.service.save(api,param).then((response)=>{
+        this.ret = response;
+    });
+    //使用回调函数，使保存成功的提示1秒后自动消失
+    this.callback((data)=>{
+         this.ret = data;
    });
   }
 
