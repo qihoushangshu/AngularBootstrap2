@@ -25,10 +25,11 @@ export class SayComponent implements OnInit {
   
 
   postContent(): void {
-    // this.sayInfo.title=this.title;
-    // this.sayInfo.content=tinymce.activeEditor.getContent({'format':'text'});
+
     var api:any = "http://127.0.0.1:8088/saveSay"; 
+
     var param:any= {"title":this.title,"content":tinymce.activeEditor.getContent({'format':'text'})}
+
     this.service.save(api,param).then((response)=>{
         this.ret = response;
     });
@@ -36,6 +37,8 @@ export class SayComponent implements OnInit {
     this.callback((data)=>{
          this.ret = data;
    });
+   this.title = '';
+   tinymce.activeEditor.setContent("");
   }
 
   callback(cb){
