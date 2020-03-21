@@ -6,7 +6,8 @@ import { ResponseInfo } from '../services/response-info';
   providedIn: 'root'
 })
 export class HttpserviceService {
-
+   
+  public domain:string="http://127.0.0.1:8088/";
   constructor(public http:HttpClient) { }
 
   save(api:any,param:any){
@@ -15,7 +16,7 @@ export class HttpserviceService {
     };
     //var api = "http://127.0.0.1:8088/saveSay"; 
     return new Promise((resolve,reject)=>{
-      this.http.post<ResponseInfo>(api,param,httpOptions).subscribe(
+      this.http.post<ResponseInfo>(this.domain+api,param,httpOptions).subscribe(
         res=>{
           console.log(res.ret)
           resolve(res.ret);
@@ -27,11 +28,8 @@ export class HttpserviceService {
 
 
   getAll(api:any){
-    const httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json'})
-    };
     return new Promise((resolve,reject)=>{
-      this.http.get(api).subscribe(
+      this.http.get(this.domain+api).subscribe(
         res=>{
           console.log(res)
           resolve(res);
@@ -40,4 +38,20 @@ export class HttpserviceService {
     })
   }
 
+  delete(api:any,id:string){
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+      body:JSON.stringify({"id":id})
+    };
+    return new Promise((resolve,reject)=>{
+      this.http.delete(this.domain+api,options).subscribe(
+        res=>{
+          console.log(res)
+          resolve(res);
+        }
+      )
+    })
+  }
 }

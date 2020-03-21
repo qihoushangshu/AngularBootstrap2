@@ -7,5 +7,5 @@ import { Component,OnInit } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'AngularBootstrap2';
+  title = 'ZY专有空间 ';
 }

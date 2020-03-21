@@ -8,6 +8,8 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'history', component: HistoryComponent },
   { path: 'say', component: SayComponent },
+  // { path: 'homeDelete', component: HomeComponent },
+  
   {path:'**',redirectTo:'home'}
 ];
 

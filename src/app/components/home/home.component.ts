@@ -11,11 +11,18 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     
-    var api:any = "http://127.0.0.1:8088/getSay"; 
+    var api:any = "getSay"; 
     this.service.getAll(api).then((response)=>{
         this.list = response;
     });
 
   }
 
+  homeDelete(id:string){
+    console.log(id);
+    var api:any = "homeDelete"; 
+    this.service.delete(api,id).then((response)=>{
+      this.list = response;
+  });
+  }
 }

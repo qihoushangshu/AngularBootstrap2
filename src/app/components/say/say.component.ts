@@ -26,7 +26,7 @@ export class SayComponent implements OnInit {
 
   postContent(): void {
 
-    var api:any = "http://127.0.0.1:8088/saveSay"; 
+    var api:any = "saveSay"; 
 
     var param:any= {"title":this.title,"content":tinymce.activeEditor.getContent({'format':'text'})}
 
